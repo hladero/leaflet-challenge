@@ -37,14 +37,8 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geoj
                 fillOpacity:1,
                 stroke: .5
                 
-
-
             });
         }}).addTo(map);
-
-        L.marker(latlng)
-            .bindPopup("<h1>" + quake.properties.mag + "</h1>")
-            .addTo(map);
 });
 
 
