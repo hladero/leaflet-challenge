@@ -23,12 +23,30 @@ function getColor(mag) {
     }
 }
 
+
 d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geojson").then(data=>{
     console.log(data);
 
+    var legend = L.control({position: 'bottomright'});
+    legend.onAdd = function (map) {
+        var div = L.DomUtil.create('div', 'info legend');
+     } 
+    
+
+    for (var i = 0; i < grades.length; i++) {
+        div.innerHTML += labels.push('<i style="background:'+ getColor(mag[i] + 1) + '></i>' + mag[i] + (mag[i + 1]) ? '&ndash;' + mag[i + 1])
+    };
+         + '<br>' : '+'));
+        }
+        return div;
+        };
+
+    
+
     L.geoJson(data,{pointToLayer:function(quake, latlng) {
         console.log(quake);
- 
+    
+
         return L.circleMarker(latlng,
             {
                 radius:quake.properties.mag*4,
@@ -40,6 +58,9 @@ d3.json("https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/1.0_week.geoj
             });
         }}).addTo(map);
 });
+
+
+
 
 
 
